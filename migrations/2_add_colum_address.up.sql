@@ -1,0 +1,1 @@
+alter table kurir add column if exists address varying(255);

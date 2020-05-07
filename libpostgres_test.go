@@ -35,4 +35,7 @@ func TestLibpostgres(t *testing.T) {
 	require.NoError(t, err)
 	t.Log(name1)
 
+	errM := Migrate(db, "file://./migrations")
+	require.NoError(t, errM)
+
 }

@@ -19,6 +19,8 @@ type Options struct {
 	Password       string
 	DBName         string
 	ConnectTimeout int
+	MaxOpenConn    int
+	MaxIdleConn    int
 	SSLCert        string
 	SSLKey         string
 	SSLRootCert    string
@@ -70,7 +72,8 @@ func Connect(options Options) (*sql.DB, error) {
 	if err != nil {
 		return nil, err
 	}
-
+	db.SetMaxOpenConns(options.MaxOpenConn)
+	db.SetMaxIdleConns(options.MaxIdleConn)
 	return db, nil
 }
 
@@ -107,6 +110,7 @@ func ConnectWithAMP(options Options) (*sql.DB, error) {
 	if err != nil {
 		return nil, err
 	}
-
+	db.SetMaxOpenConns(options.MaxOpenConn)
+	db.SetMaxIdleConns(options.MaxIdleConn)
 	return db, nil
 }

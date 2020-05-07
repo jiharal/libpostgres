@@ -1,0 +1,1 @@
+alter table kurir drop column if exists address;
